@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "mavlink-log"
   spec.version       = Mavlink::Log::VERSION
   spec.authors       = ["Nick Veys"]
-  spec.email         = ["nickveys@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.email         = ["nick@codelever.com"]
+  spec.description   = %q{Read and interpret MAVLink telemetry log files.}
+  spec.summary       = %q{MAVLink telemetry log file reader}
+  spec.homepage      = "http://github.com/code-lever/mavlink-log"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -18,6 +18,14 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency 'awesome_print'
+  spec.add_development_dependency 'bundler', '~> 1.3'
+  spec.add_development_dependency 'ci_reporter', '= 1.8.4'
+  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rspec', '~> 2.13'
+  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'simplecov-gem-adapter'
+  spec.add_development_dependency 'simplecov-rcov'
+
+  spec.add_dependency 'ruby_kml', '~> 0.1'
 end
