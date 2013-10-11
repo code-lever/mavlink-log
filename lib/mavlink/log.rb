@@ -1,6 +1,6 @@
 require "mavlink/log/version"
 
-module Mavlink
+module MAVLink
   module Log
     # Your code goes here...
   end

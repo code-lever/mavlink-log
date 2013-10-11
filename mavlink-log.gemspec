@@ -5,7 +5,7 @@ require 'mavlink/log/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "mavlink-log"
-  spec.version       = Mavlink::Log::VERSION
+  spec.version       = MAVLink::Log::VERSION
   spec.authors       = ["Nick Veys"]
   spec.email         = ["nick@codelever.com"]
   spec.description   = %q{Read and interpret MAVLink telemetry log files.}

@@ -1,4 +1,4 @@
-module Mavlink
+module MAVLink
   module Log
     VERSION = "0.0.1"
   end
