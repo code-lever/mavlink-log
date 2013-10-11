@@ -2,6 +2,12 @@
 
 TODO: Write a gem description
 
+Information:
+
+* mavlink github: https://github.com/mavlink/mavlink
+* Spec: https://pixhawk.ethz.ch/mavlink
+* Common message definitions: https://github.com/mavlink/mavlink/blob/master/message_definitions/v1.0/common.xml
+
 ## Installation
 
 Add this line to your application's Gemfile:
