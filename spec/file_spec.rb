@@ -10,7 +10,7 @@ describe MAVLink::Log::File do
 
       subject { @file }
 
-      it 'should have a duration'
+      its(:duration) { should be_within(0.1).of(99.7) }
 
     end
 
