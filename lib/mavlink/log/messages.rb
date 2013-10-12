@@ -127,7 +127,7 @@ module MAVLink
         when GlobalPositionInt::ID; GlobalPositionInt.new(entry.payload)
         when VfrHud::ID; VfrHud.new(entry.payload)
         else
-          puts entry.header.inspect
+          #puts entry.header.inspect
           nil
         end
       end
