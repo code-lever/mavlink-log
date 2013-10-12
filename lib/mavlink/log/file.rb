@@ -29,7 +29,7 @@ module MAVLink
             time = to_time(raw_time)
             header = to_header(file.read(6))
             payload = file.read(header.length)
-            crc = file.read(2).unpack('n')[0]
+            crc = file.read(2).unpack('S>')[0]
             @entries << Entry.new(time, header, payload, crc)
           end
         end
@@ -63,7 +63,7 @@ module MAVLink
       private
 
       def to_time(raw_time)
-        (raw_time[0..3].unpack('N')[0] << 32) | raw_time[4..7].unpack('N')[0]
+        (raw_time[0..3].unpack('L>')[0] << 32) | raw_time[4..7].unpack('L>')[0]
       end
 
       def to_header(raw_header)
