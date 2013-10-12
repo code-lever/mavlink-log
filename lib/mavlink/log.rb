@@ -1,3 +1,7 @@
+require "mavlink/log/entry"
 require "mavlink/log/file"
-require "mavlink/log/messages"
+require "mavlink/log/header"
+require "mavlink/log/message"
+require "mavlink/log/messages/factory"
+require "mavlink/log/messages/messages"
 require "mavlink/log/version"

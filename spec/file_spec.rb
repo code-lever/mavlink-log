@@ -20,6 +20,15 @@ describe MAVLink::Log::File do
 
     end
 
+    it 'should raise for invalid or missing files' do
+      files = invalid_data_files
+      files.should have(6).files
+
+      files.each do |f|
+        expect { MAVLink::Log::File.new(f) }.to raise_error
+      end
+    end
+
   end
 
 end
