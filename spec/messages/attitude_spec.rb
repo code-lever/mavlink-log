@@ -17,7 +17,7 @@ describe MAVLink::Log::Messages::Attitude do
 
   it_behaves_like 'a message'
 
-  it_behaves_like 'a timed message (ms)'
+  it_behaves_like 'a timed message (ms)', 78693
 
   its(:roll) { should be_within(0.01).of(0.0) }
 

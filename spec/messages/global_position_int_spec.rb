@@ -17,7 +17,7 @@ describe MAVLink::Log::Messages::GlobalPositionInt do
 
   it_behaves_like 'a message'
 
-  it_behaves_like 'a timed message (ms)'
+  it_behaves_like 'a timed message (ms)', 665100
 
   its(:lat) { should be_within(0.0001).of(39.7501) }
 
