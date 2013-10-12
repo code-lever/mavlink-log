@@ -63,6 +63,23 @@ module MAVLink
 
     end
 
+    class Attitude < TimedMessage
+
+      ID = 30
+
+      attr_accessor :roll, :pitch, :yaw, :rollspeed, :pitchspeed, :yawspeed
+
+      def initialize(raw_payload)
+        super
+        @roll = raw_payload[0..3].unpack('e')[0]          # radians (-pi..pi)
+        @pitch = raw_payload[4..7].unpack('e')[0]         # radians (-pi..pi)
+        @yaw = raw_payload[8..11].unpack('e')[0]          # radians (-pi..pi)
+        @rollspeed = raw_payload[12..15].unpack('e')[0]   # rad/s
+        @pitchspeed = raw_payload[16..19].unpack('e')[0]  # rad/s
+        @yawspeed = raw_payload[20..23].unpack('e')[0]    # rad/s
+      end
+    end
+
     class GlobalPositionInt < TimedMessage
 
       ID = 33
@@ -86,11 +103,14 @@ module MAVLink
     class MessageFactory
 
       def self.build(entry)
-        #puts entry.header.inspect
         case(entry.header.id)
         when HeartBeat::ID; HeartBeat.new(entry.payload)
         when SysStatus::ID; SysStatus.new(entry.payload)
+        when Attitude::ID; Attitude.new(entry.payload)
         when GlobalPositionInt::ID; GlobalPositionInt.new(entry.payload)
+        else
+          puts entry.header.inspect
+          nil
         end
       end
 
