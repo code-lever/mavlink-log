@@ -19,4 +19,22 @@ describe MAVLink::Log::Messages::RawImu do
 
   it_behaves_like 'a timed message (us)', 665000000
 
+  its(:xacc) { should eql(710) }
+
+  its(:yacc) { should eql(383) }
+
+  its(:zacc) { should eql(-2987) }
+
+  its(:xgyro) { should eql(6126) }
+
+  its(:ygyro) { should eql(6128) }
+
+  its(:zgyro) { should eql(6324) }
+
+  its(:xmag) { should eql(0) }
+
+  its(:ymag) { should eql(0) }
+
+  its(:zmag) { should eql(0) }
+
 end
