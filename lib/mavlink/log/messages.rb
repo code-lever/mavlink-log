@@ -100,6 +100,23 @@ module MAVLink
 
     end
 
+    class VfrHud <  Message
+
+      ID = 74
+
+      attr_accessor :airspeed, :groundspeed, :heading, :throttle, :alt, :climb
+
+      def initialize(raw_payload)
+        @airspeed = raw_payload[0..3].unpack('e')[0]      # m/s
+        @groundspeed = raw_payload[4..7].unpack('e')[0]   # m/s
+        @heading = raw_payload[8..9].unpack('s<')[0]      # degrees (0..360)
+        @throttle = raw_payload[10..11].unpack('S<')[0]   # 0..100%
+        @alt = raw_payload[12..15].unpack('e')[0]         # meters (MSL)
+        @climb = raw_payload[16..19].unpack('e')[0]       # m/s
+      end
+
+    end
+
     class MessageFactory
 
       def self.build(entry)
@@ -108,6 +125,7 @@ module MAVLink
         when SysStatus::ID; SysStatus.new(entry.payload)
         when Attitude::ID; Attitude.new(entry.payload)
         when GlobalPositionInt::ID; GlobalPositionInt.new(entry.payload)
+        when VfrHud::ID; VfrHud.new(entry.payload)
         else
           puts entry.header.inspect
           nil
