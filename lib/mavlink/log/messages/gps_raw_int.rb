@@ -37,6 +37,7 @@ module MAVLink; module Log; module Messages
       @cog ||= (uint16_t(26..27) / 100.0)
     end
 
+    # 0-1: no fix, 2: 2D fix, 3: 3D fix
     def fix_type
       @fix_type ||= uint8_t(28)
     end
