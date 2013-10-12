@@ -14,6 +14,8 @@ describe MAVLink::Log::File do
 
       it { should have(21138).entries }
 
+      it { should have(21138).messages }
+
       its(:to_kml?) { should be_true }
 
     end

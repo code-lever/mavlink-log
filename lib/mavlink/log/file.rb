@@ -37,9 +37,6 @@ module MAVLink
             @messages << MessageFactory.build(@entries.last)
           end
         end
-        #@messages.each do |e|
-        #  puts e.inspect
-        #end
       rescue => e
         raise ArgumentError, "File does not appear to be an MAVLink log (#{e})"
       end
@@ -64,7 +61,7 @@ module MAVLink
       #
       # @return [Boolean] true if KML can be generated for this file, false otherwise
       def to_kml?
-        @entries.any? { |e| e.header.id == GlobalPositionInt::ID }
+        @messages.any? { |msg| msg.is_a? GlobalPositionInt }
       end
 
       private

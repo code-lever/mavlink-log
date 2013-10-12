@@ -3,9 +3,7 @@ module MAVLink
 
     class Message
 
-      class << self
-        attr_accessor :id
-      end
+      attr_accessor :id
 
     end
 
@@ -21,8 +19,6 @@ module MAVLink
 
     class HeartBeat < Message
 
-      ID = 0
-
       attr_accessor :type, :autopilot, :base_mode, :custom_mode, :system_status, :mavlink_version
 
       def initialize(raw_payload)
@@ -37,8 +33,6 @@ module MAVLink
     end
 
     class SysStatus < Message
-
-      ID = 1
 
       attr_accessor :onboard_control_sensors_present, :onboard_control_sensors_enabled,
                     :onboard_control_sensors_health, :load, :voltage_battery, :current_battery,
@@ -65,8 +59,6 @@ module MAVLink
 
     class Attitude < TimedMessage
 
-      ID = 30
-
       attr_accessor :roll, :pitch, :yaw, :rollspeed, :pitchspeed, :yawspeed
 
       def initialize(raw_payload)
@@ -81,8 +73,6 @@ module MAVLink
     end
 
     class GlobalPositionInt < TimedMessage
-
-      ID = 33
 
       attr_accessor :lat, :lon, :alt, :relative_alt, :vx, :vy, :vz, :hdg
 
@@ -102,8 +92,6 @@ module MAVLink
 
     class VfrHud <  Message
 
-      ID = 74
-
       attr_accessor :airspeed, :groundspeed, :heading, :throttle, :alt, :climb
 
       def initialize(raw_payload)
@@ -121,11 +109,11 @@ module MAVLink
 
       def self.build(entry)
         case(entry.header.id)
-        when HeartBeat::ID; HeartBeat.new(entry.payload)
-        when SysStatus::ID; SysStatus.new(entry.payload)
-        when Attitude::ID; Attitude.new(entry.payload)
-        when GlobalPositionInt::ID; GlobalPositionInt.new(entry.payload)
-        when VfrHud::ID; VfrHud.new(entry.payload)
+        when 0;  HeartBeat.new(entry.payload)
+        when 1;  SysStatus.new(entry.payload)
+        when 30; Attitude.new(entry.payload)
+        when 33; GlobalPositionInt.new(entry.payload)
+        when 74; VfrHud.new(entry.payload)
         else
           #puts entry.header.inspect
           nil
