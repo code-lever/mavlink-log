@@ -8,7 +8,7 @@ Information:
 * Spec: https://pixhawk.ethz.ch/mavlink
 * Common message definitions: https://github.com/mavlink/mavlink/blob/master/message_definitions/v1.0/common.xml
 * Packet Decoding: http://eastbay-rc.blogspot.com/2013/04/mavlink-protocol-notes-packet-decoding.html
-* 
+
 ## Installation
 
 Add this line to your application's Gemfile:
