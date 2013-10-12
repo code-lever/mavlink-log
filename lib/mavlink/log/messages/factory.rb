@@ -6,11 +6,15 @@ module MAVLink; module Log; module Messages
       case(entry.header.id)
       when 0;  HeartBeat.new(entry)
       when 1;  SysStatus.new(entry)
+      when 22; ParamValue.new(entry)
+      when 24; GpsRawInt.new(entry)
+      when 27; RawImu.new(entry)
       when 30; Attitude.new(entry)
       when 33; GlobalPositionInt.new(entry)
+      when 35; RcChannelsRaw.new(entry)
       when 74; VfrHud.new(entry)
       else
-        #puts entry.header.inspect
+        puts entry.header.inspect
         nil
       end
     end

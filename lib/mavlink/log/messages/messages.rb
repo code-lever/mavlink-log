@@ -1,3 +1,8 @@
+require_relative 'gps_raw_int'
+require_relative 'param_value'
+require_relative 'raw_imu'
+require_relative 'rc_channels_raw'
+
 module MAVLink; module Log; module Messages
 
   class HeartBeat < Message
@@ -97,7 +102,7 @@ module MAVLink; module Log; module Messages
 
   end
 
-  class Attitude < TimedMessage
+  class Attitude < TimedMessageMilli
 
     def initialize(entry)
       super
@@ -135,7 +140,7 @@ module MAVLink; module Log; module Messages
 
   end
 
-  class GlobalPositionInt < TimedMessage
+  class GlobalPositionInt < TimedMessageMilli
 
     attr_accessor :lat, :lon, :alt, :relative_alt, :vx, :vy, :vz, :hdg
 
