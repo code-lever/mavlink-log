@@ -7,6 +7,7 @@ describe MAVLink::Log::File do
     context 'with data file delete-me-soon.tlog' do
 
       before(:all) { @file = MAVLink::Log::File.new(data_file('delete-me-soon.tlog')) }
+      #before(:all) { @file = MAVLink::Log::File.new("/Users/nick/Desktop/2013-10-11 16-28-33.tlog") }
 
       subject { @file }
 

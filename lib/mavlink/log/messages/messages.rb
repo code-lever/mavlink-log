@@ -180,7 +180,7 @@ module MAVLink; module Log; module Messages
 
     # degrees (0.0..359.99) (0xFFFF if unknown)
     def hdg
-      @hdg ||= uint16_t(26..27) / 100.0
+      @hdg ||= (uint16_t(26..27) / 100.0)
     end
 
   end
