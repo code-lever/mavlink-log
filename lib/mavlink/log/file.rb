@@ -11,6 +11,8 @@ module MAVLink
 
     class File
 
+      attr_accessor :entries, :messages
+
       # Determines if the file at the given URI is a MAVLink telemetry log file.
       #
       # @param uri URI to file to read
@@ -21,6 +23,7 @@ module MAVLink
 
       def initialize(uri)
         @entries = []
+        @messages = []
         open(uri, 'rb') do |file|
           loop do
             raw_time = file.read(8)
@@ -31,8 +34,12 @@ module MAVLink
             payload = file.read(header.length)
             crc = file.read(2).unpack('S>')[0]
             @entries << Entry.new(time, header, payload, crc)
+            @messages << MessageFactory.build(@entries.last)
           end
         end
+        #@messages.each do |e|
+        #  puts e.inspect
+        #end
       rescue => e
         raise ArgumentError, "File does not appear to be an MAVLink log (#{e})"
       end
@@ -57,7 +64,7 @@ module MAVLink
       #
       # @return [Boolean] true if KML can be generated for this file, false otherwise
       def to_kml?
-        false
+        @entries.any? { |e| e.header.id == GlobalPositionInt::ID }
       end
 
       private

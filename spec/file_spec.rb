@@ -12,6 +12,10 @@ describe MAVLink::Log::File do
 
       its(:duration) { should be_within(0.1).of(99.7) }
 
+      it { should have(21138).entries }
+
+      its(:to_kml?) { should be_true }
+
     end
 
   end
