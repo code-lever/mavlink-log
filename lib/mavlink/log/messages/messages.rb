@@ -7,10 +7,6 @@ module MAVLink; module Log; module Messages
 
   class HeartBeat < Message
 
-    def initialize(entry)
-      super
-    end
-
     def type
       @type ||= uint8_t(0)
     end
@@ -38,10 +34,6 @@ module MAVLink; module Log; module Messages
   end
 
   class SysStatus < Message
-
-    def initialize(entry)
-      super
-    end
 
     def onboard_control_sensors_present
       @onboard_control_sensors_present ||= uint32_t(0..3)
@@ -104,10 +96,6 @@ module MAVLink; module Log; module Messages
 
   class Attitude < TimedMessageMilli
 
-    def initialize(entry)
-      super
-    end
-
     # radians (-pi..pi)
     def roll
       @roll ||= float(0..3)
@@ -143,10 +131,6 @@ module MAVLink; module Log; module Messages
   class GlobalPositionInt < TimedMessageMilli
 
     attr_accessor :lat, :lon, :alt, :relative_alt, :vx, :vy, :vz, :hdg
-
-    def initialize(entry)
-      super
-    end
 
     # dec. degrees
     def lat
@@ -191,10 +175,6 @@ module MAVLink; module Log; module Messages
   end
 
   class VfrHud <  Message
-
-    def initialize(entry)
-      super
-    end
 
     # m/s
     def airspeed

@@ -2,10 +2,6 @@ module MAVLink; module Log; module Messages
 
   class GpsRawInt < TimedMessageMicro
 
-    def initialize(entry)
-      super
-    end
-
     # WGS84 dec. degrees
     def lat
       @lat ||= (int32_t(8..11) / 10000000.0)

@@ -60,10 +60,6 @@ module MAVLink; module Log
 
     attr_accessor :time_boot_ms
 
-    def initialize(entry)
-      super
-    end
-
     def time_boot_ms
       @time_boot_ms ||= uint32_t(0..3)
     end
@@ -73,10 +69,6 @@ module MAVLink; module Log
   class TimedMessageMicro < Message
 
     attr_accessor :time_usec
-
-    def initialize(entry)
-      super
-    end
 
     def time_usec
       @time_usec ||= ((uint32_t(0..3) << 32) | uint32_t(4..7))
