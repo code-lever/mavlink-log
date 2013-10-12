@@ -2,8 +2,6 @@ module MAVLink; module Log; module Messages
 
   class GlobalPositionInt < TimedMessageMilli
 
-    attr_accessor :lat, :lon, :alt, :relative_alt, :vx, :vy, :vz, :hdg
-
     # dec. degrees
     def lat
       @lat ||= (int32_t(4..7) / 10000000.0)
