@@ -44,6 +44,10 @@ module MAVLink; module Log
       unpack(range, 'L<')
     end
 
+    def uint64_t(range)
+      unpack(range, 'Q<')
+    end
+
     private
 
     def payload
@@ -67,7 +71,7 @@ module MAVLink; module Log
   class TimedMessageMicro < Message
 
     def time_usec
-      @time_usec ||= ((uint32_t(0..3) << 32) | uint32_t(4..7))
+      @time_usec ||= uint64_t(0..7)
     end
 
   end

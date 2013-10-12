@@ -17,7 +17,7 @@ describe MAVLink::Log::Messages::GpsRawInt do
 
   it_behaves_like 'a message'
 
-  it_behaves_like 'a timed message (us)'
+  it_behaves_like 'a timed message (us)', 664900000
 
   its(:fix_type) { should eql(3) }
 
