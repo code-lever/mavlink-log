@@ -99,17 +99,40 @@ module MAVLink; module Log; module Messages
 
   class Attitude < TimedMessage
 
-    attr_accessor :roll, :pitch, :yaw, :rollspeed, :pitchspeed, :yawspeed
-
     def initialize(entry)
       super
-      #@roll = raw_payload[0..3].unpack('e')[0]          # radians (-pi..pi)
-      #@pitch = raw_payload[4..7].unpack('e')[0]         # radians (-pi..pi)
-      #@yaw = raw_payload[8..11].unpack('e')[0]          # radians (-pi..pi)
-      #@rollspeed = raw_payload[12..15].unpack('e')[0]   # rad/s
-      #@pitchspeed = raw_payload[16..19].unpack('e')[0]  # rad/s
-      #@yawspeed = raw_payload[20..23].unpack('e')[0]    # rad/s
     end
+
+    # radians (-pi..pi)
+    def roll
+      @roll ||= float(0..3)
+    end
+
+    # radians (-pi..pi)
+    def pitch
+      @pitch ||= float(4..7)
+    end
+
+    # radians (-pi..pi)
+    def yaw
+      @yaw ||= float(8..11)
+    end
+
+    # rad/s
+    def rollspeed
+      @rollspeed ||= float(12..15)
+    end
+
+    # rad/s
+    def pitchspeed
+      @pitchspeed ||= float(16..19)
+    end
+
+    # rad/s
+    def yawspeed
+      @yawspeed ||= float(20..23)
+    end
+
   end
 
   class GlobalPositionInt < TimedMessage
@@ -118,30 +141,84 @@ module MAVLink; module Log; module Messages
 
     def initialize(entry)
       super
-      #@lat = raw_payload[4..7].unpack('l<')[0] / 10000000.0         # dec. degrees
-      #@lon = raw_payload[8..11].unpack('l<')[0] / 10000000.0        # dec. degrees
-      #@alt = raw_payload[12..15].unpack('l<')[0] / 1000.0           # meters
-      #@relative_alt = raw_payload[16..19].unpack('l<')[0] / 1000.0  # meters
-      #@vx = raw_payload[20..21].unpack('s<')[0] / 100.0             # m/s
-      #@vy = raw_payload[22..23].unpack('s<')[0] / 100.0             # m/s
-      #@vz = raw_payload[24..25].unpack('s<')[0] / 100.0             # m/s
-      #@hdg = raw_payload[26..27].unpack('S<')[0] / 100.0            # degrees (0.0..359.99) (0xFFFF if unknown)
+    end
+
+    # dec. degrees
+    def lat
+      @lat ||= (int32_t(4..7) / 10000000.0)
+    end
+
+    # dec. degrees
+    def lon
+      @lon ||= (int32_t(8..11) / 10000000.0)
+    end
+
+    # meters
+    def alt
+      @alt ||= (int32_t(12..15) / 1000.0)
+    end
+
+    # meters
+    def relative_alt
+      @relative_alt ||= (int32_t(16..19) / 1000.0)
+    end
+
+    # m/s
+    def vx
+      @vx ||= (int16_t(20..21) / 100.0)
+    end
+
+    # m/s
+    def vy
+      @vy ||= (int16_t(22..23) / 100.0)
+    end
+
+    # m/s
+    def vz
+      @vz ||= (int16_t(24..25) / 100.0)
+    end
+
+    # degrees (0.0..359.99) (0xFFFF if unknown)
+    def hdg
+      @hdg ||= uint16_t(26..27) / 100.0
     end
 
   end
 
   class VfrHud <  Message
 
-    attr_accessor :airspeed, :groundspeed, :heading, :throttle, :alt, :climb
-
     def initialize(entry)
       super
-      #@airspeed = raw_payload[0..3].unpack('e')[0]      # m/s
-      #@groundspeed = raw_payload[4..7].unpack('e')[0]   # m/s
-      #@heading = raw_payload[8..9].unpack('s<')[0]      # degrees (0..360)
-      #@throttle = raw_payload[10..11].unpack('S<')[0]   # 0..100%
-      #@alt = raw_payload[12..15].unpack('e')[0]         # meters (MSL)
-      #@climb = raw_payload[16..19].unpack('e')[0]       # m/s
+    end
+
+    # m/s
+    def airspeed
+      @airspeed ||= float(0..3)
+    end
+
+    # m/s
+    def groundspeed
+      @groundspeed ||= float(4..7)
+    end
+
+    # 0..360
+    def heading
+      @heading ||= int16_t(8..9)
+    end
+
+    # 0..100%
+    def throttle
+      @throttle ||= uint16_t(10..11)
+    end
+
+    # meters (MSL)
+    def alt
+      @alt ||= float(12..15)
+    end
+
+    # m/s
+    def climb
+      @climb ||= float(16..19)
     end
 
   end
