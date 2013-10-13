@@ -48,6 +48,10 @@ module MAVLink; module Log
       unpack(range, 'Q<')
     end
 
+    def string(range)
+      unpack(range, 'Z*')
+    end
+
     private
 
     def payload
