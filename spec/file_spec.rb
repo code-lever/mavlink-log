@@ -17,8 +17,6 @@ describe MAVLink::Log::File do
 
       it { should have(21138).messages }
 
-      its(:to_kml?) { should be_true }
-
     end
 
     it 'should raise for invalid or missing files' do
