@@ -36,10 +36,11 @@ module MAVLink
         if @entries.empty?
           raise 'No entries found in file'
         end
-
-        #puts @messages.inspect
       rescue => e
-        raise ArgumentError, "File does not appear to be an MAVLink log (#{e})"
+        unless @entries.length >= 2
+          # bad ending message, give the file benefit of the doubt...
+          raise ArgumentError, "File does not appear to be an MAVLink log (#{e})"
+        end
       end
 
       # Gets the duration of the session, in seconds.
@@ -47,15 +48,27 @@ module MAVLink
       # @return [Float] duration of the session, in seconds
       def duration
         return 0 if @entries.empty?
-        (@entries.last.time - @entries.first.time) / 1000000.0
+        ended_at - started_at
       end
 
+      # Gets the starting time as a Unix Epoch time stamp in seconds.
+      #
+      # @return [Float] unix epoch time the log began
       def started_at
-        Time.at(@entries.first.time / 1000000.0)
+        time_in_seconds(@entries.first.time)
       end
 
+      # Gets the ending time as a Unix Epoch time stamp in seconds.
+      #
+      # @return [Float] unix epoch time the log ended
       def ended_at
-        Time.at(@entries.last.time / 1000000.0)
+        time_in_seconds(@entries.last.time)
+      end
+
+      private
+
+      def time_in_seconds(stamp)
+        stamp / 1000000.0
       end
 
     end
