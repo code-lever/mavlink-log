@@ -21,11 +21,14 @@ module MAVLink; module Log; module Messages
       when 33;  GlobalPositionInt.new(entry)
       when 35;  RcChannelsRaw.new(entry)
       when 36;  ServoOutputRaw.new(entry)
+      when 39;  MissionItem.new(entry)
+      when 40;  MissionRequest.new(entry)
       when 42;  MissionCurrent.new(entry)
       when 62;  NavControllerOutput.new(entry)
       when 66;  RequestDataStream.new(entry)
       when 74;  VfrHud.new(entry)
       when 150..240; Dummy.new(entry)
+      when 253; StatusText.new(entry)
       else
         puts entry.header.inspect
         nil
