@@ -27,9 +27,13 @@ module MAVLink; module Log; module Messages
       @epv ||= (uint16_t(22..23) / 100.0)
     end
 
-    # m/s
-    def vel
+    # :mps (m/s)
+    # :knots
+    # :mph
+    # :kph
+    def vel(unit = :mps)
       @vel ||= (uint16_t(24..25) / 100.0)
+      speed_convert(@vel, unit)
     end
 
     # degrees 0..359.99
@@ -44,6 +48,17 @@ module MAVLink; module Log; module Messages
 
     def satellites_visible
       @satellites_visible ||= uint8_t(29)
+    end
+
+    private
+
+    def speed_convert(value, unit = :mps)
+      case unit
+      when :knots; value * 1.9438444924406
+      when :mph;   value * 2.2369362920544025
+      when :kph;   value * 3.6
+      else;        value
+      end
     end
 
   end
