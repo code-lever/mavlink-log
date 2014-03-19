@@ -39,7 +39,7 @@ module MAVLink
       rescue => e
         unless @entries.length >= 2
           # bad ending message, give the file benefit of the doubt...
-          raise ArgumentError, "File does not appear to be an MAVLink log (#{e})"
+          raise ArgumentError, "File does not appear to be a MAVLink log (#{e})"
         end
       end
 
