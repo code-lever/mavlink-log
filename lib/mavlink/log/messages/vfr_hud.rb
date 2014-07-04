@@ -1,6 +1,6 @@
 module MAVLink; module Log; module Messages
 
-  class VfrHud <  Message
+  class VfrHud < Message
 
     # :mps (m/s)
     # :knots
