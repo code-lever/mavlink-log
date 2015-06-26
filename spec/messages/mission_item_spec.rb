@@ -41,8 +41,8 @@ describe MAVLink::Log::Messages::MissionItem do
 
   its(:frame) { should eql(0) }
 
-  its(:current) { should be_true }
+  its(:current) { should be(true) }
 
-  its(:autocontinue) { should be_true }
+  its(:autocontinue) { should be(true) }
 
 end
