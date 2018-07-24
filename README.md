@@ -1,4 +1,4 @@
-# MAVLink::Log [![Build Status](https://travis-ci.org/code-lever/mavlink-log.png)](https://travis-ci.org/code-lever/mavlink-log) [![Dependency Status](https://gemnasium.com/code-lever/mavlink-log.png)](https://gemnasium.com/code-lever/mavlink-log) [![Code Climate](https://codeclimate.com/github/code-lever/mavlink-log.png)](https://codeclimate.com/github/code-lever/mavlink-log)
+# MAVLink::Log [![Build Status](https://travis-ci.org/code-lever/mavlink-log.png)](https://travis-ci.org/code-lever/mavlink-log) [![Code Climate](https://codeclimate.com/github/code-lever/mavlink-log.png)](https://codeclimate.com/github/code-lever/mavlink-log)
 
 TODO: Write a gem description
 
